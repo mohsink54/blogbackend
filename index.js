@@ -16,7 +16,7 @@ cors({
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
   })
-  
+
 app.use(clerkMiddleware());
 app.use("/webhooks", webhookRouter);
 app.use(express.json());
@@ -33,11 +33,10 @@ app.get("/", (req, res) => {
     res.send("Backend is running successfully!");
   });
 
-app.use("/users", userRouter);
-app.use("/posts", postRouter);
-app.use("/comments", commentRouter);
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/posts", postRouter);
+app.use("/api/v1/comments", commentRouter);
 
-app.listen(3000, ()=>{
-    connectDB()
-    console.log("Server is Running!")
-})
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+connectDB();
