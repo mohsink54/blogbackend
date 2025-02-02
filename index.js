@@ -11,11 +11,12 @@ import cors from "cors"
 
 
 const app = express();
-cors({
+app.use(cors({
     origin: ["https://blog-three-delta-88.vercel.app"], // Allow frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
-  })
+}));
+
 
 app.use(clerkMiddleware());
 app.use("/webhooks", webhookRouter);
