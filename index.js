@@ -24,6 +24,9 @@ app.use(function (req, res, next){
     );
     next();
 })
+app.get("/", (req, res) => {
+    res.send("Backend is running successfully!");
+  });
 
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
